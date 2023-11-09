@@ -40,7 +40,9 @@ while (true)
 
 Console.WriteLine("Your product list: ");
 Console.WriteLine("Category".PadRight(15) + "Name".PadRight(15) + "Price");
-foreach (Product product in products)
+// ascending
+var sortedProductList = products.OrderBy(product => product.Price).ToList();
+foreach (Product product in sortedProductList)
 {
     Console.WriteLine(product.Category.PadRight(15) + product.Name.PadRight(15) + product.Price);
 }
