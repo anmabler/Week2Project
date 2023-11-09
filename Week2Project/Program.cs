@@ -39,10 +39,12 @@ while (true)
 }
 
 Console.WriteLine("Your product list: ");
-int sum = 0;
-for (int i = 0; i < products.Count; i++)
+Console.WriteLine("Category".PadRight(15) + "Name".PadRight(15) + "Price");
+foreach (Product product in products)
 {
-    Console.WriteLine(products[i].Category.PadRight(20) + products[i].Name.PadRight(20) + products[i].Price);
-    sum += products[i].Price;
+    Console.WriteLine(product.Category.PadRight(15) + product.Name.PadRight(15) + product.Price);
 }
-Console.WriteLine("\nSum ".PadRight(40) + sum);
+Console.WriteLine("-----------------------------------");
+int priceSum = products.Sum(product => product.Price); 
+
+Console.WriteLine("\nSum ".PadRight(30) + priceSum);
