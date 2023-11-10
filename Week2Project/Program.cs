@@ -22,6 +22,7 @@ static void switchMenu (List<Product> products)
             break;
         case "2":
             displayList(products);
+            switchMenu(products);
             break;
         //case "3":
         //    searchProduct();
@@ -94,5 +95,4 @@ static void displayList(List<Product> products)
 
     Console.WriteLine("\nSum ".PadRight(30) + priceSum);
 
-    switchMenu(products);
 }
