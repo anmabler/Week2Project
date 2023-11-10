@@ -1,11 +1,38 @@
 ﻿using Week2Project;
 
 List<Product> products = new List<Product>();
+switchMenu(products);
 
-addProducts(products);
-displayList(products);
+static void switchMenu (List<Product> products)
+{
+    Console.WriteLine("------------------------------------");
+    Console.WriteLine("Enter a number to make a selection");
+    Console.WriteLine("1/ Add product");
+    Console.WriteLine("2/ List added products");
+    //Console.WriteLine("3/ Search");
+    Console.WriteLine("0/ Quit");
+    Console.WriteLine("------------------------------------");
 
-
+    Console.WriteLine("Enter a number");
+    string selectionInput = Console.ReadLine();
+    switch (selectionInput)
+    {
+        case "1":
+            addProducts(products);
+            break;
+        case "2":
+            displayList(products);
+            break;
+        //case "3":
+        //    searchProduct();
+        //    break;
+        case "0":
+            break;
+        default:
+            Console.WriteLine("Incorrect selection");
+            break;
+    }
+}
 static List<Product> addProducts (List<Product> products)
 {
     Console.WriteLine("Enter a new product. Enter 'q' to quit");
@@ -15,6 +42,8 @@ static List<Product> addProducts (List<Product> products)
         string categoryInput = Console.ReadLine();
         if (categoryInput.ToLower().Trim() == "q")
         {
+            displayList(products);
+            switchMenu(products);
             break;
         }
 
@@ -22,6 +51,8 @@ static List<Product> addProducts (List<Product> products)
         string productInput = Console.ReadLine();
         if (productInput.ToLower().Trim() == "q")
         {
+            displayList(products);
+            switchMenu(products);
             break;
         }
 
@@ -29,10 +60,12 @@ static List<Product> addProducts (List<Product> products)
         string priceInput = Console.ReadLine();
         if (priceInput.ToLower().Trim() == "q")
         {
+            displayList(products);
+            switchMenu(products);
             break;
         }
 
-        bool isInt = int.TryParse(priceInput, out int value);
+        bool isInt = int.TryParse(priceInput, out int value);   
         if (isInt)
         {
             Product product = new Product(categoryInput, productInput, value);
@@ -48,7 +81,7 @@ static List<Product> addProducts (List<Product> products)
 
 static void displayList(List<Product> products)
 {
-    Console.WriteLine("Your product list: ");
+    Console.WriteLine("\nYour product list: ");
     Console.WriteLine("Category".PadRight(15) + "Name".PadRight(15) + "Price");
     // ascending
     var sortedProductList = products.OrderBy(product => product.Price).ToList();
@@ -60,4 +93,6 @@ static void displayList(List<Product> products)
     int priceSum = products.Sum(product => product.Price);
 
     Console.WriteLine("\nSum ".PadRight(30) + priceSum);
+
+    switchMenu(products);
 }
