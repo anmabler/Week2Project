@@ -1,6 +1,7 @@
 ﻿using Week2Project;
 
 List<Product> products = new List<Product>();
+// Show main menu
 switchMenu(products);
 
 static void switchMenu (List<Product> products)
@@ -21,6 +22,7 @@ static void switchMenu (List<Product> products)
             addProducts(products);
             break;
         case "2":
+            // shows main menu again after displaying list
             displayList(products);
             switchMenu(products);
             break;
@@ -65,8 +67,9 @@ static List<Product> addProducts (List<Product> products)
             switchMenu(products);
             break;
         }
-
+        // check if int
         bool isInt = int.TryParse(priceInput, out int value);   
+        // add product to list if int
         if (isInt)
         {
             Product product = new Product(categoryInput, productInput, value);
@@ -79,18 +82,19 @@ static List<Product> addProducts (List<Product> products)
     }
     return products;
 }
-
+// Function for showing items in list
 static void displayList(List<Product> products)
 {
     Console.WriteLine("\nYour product list: ");
     Console.WriteLine("Category".PadRight(15) + "Name".PadRight(15) + "Price");
-    // ascending
+    // Ascending order
     var sortedProductList = products.OrderBy(product => product.Price).ToList();
     foreach (Product product in sortedProductList)
     {
         Console.WriteLine(product.Category.PadRight(15) + product.Name.PadRight(15) + product.Price);
     }
     Console.WriteLine("-----------------------------------");
+    // Calculate sum
     int priceSum = products.Sum(product => product.Price);
 
     Console.WriteLine("\nSum ".PadRight(30) + priceSum);
