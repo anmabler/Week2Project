@@ -47,12 +47,16 @@ namespace Week2Project
             // search for lower case name in list
             var result = products.Where(product => product.Name.ToLower().Contains(searchInput.ToLower())).ToList();
 
-            
+
             if (result.Count > 0)
             {
                 displayList(result);
             }
-            else Console.WriteLine($"{searchInput} was not found in the list");
+            else {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{searchInput} was not found in the list");
+                Console.ResetColor();
+            }
         }
     }
 }
