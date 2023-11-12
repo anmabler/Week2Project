@@ -10,7 +10,7 @@ static void switchMenu (Inventory products)
     Console.WriteLine("Enter a number to make a selection");
     Console.WriteLine("1/ Add product");
     Console.WriteLine("2/ List added products");
-    //Console.WriteLine("3/ Search");
+    Console.WriteLine("3/ Search");
     Console.WriteLine("0/ Quit");
     Console.WriteLine("------------------------------------");
 
@@ -28,6 +28,7 @@ static void switchMenu (Inventory products)
             break;
         case "3":
             products.searchProduct();
+            switchMenu(products);
             break;
         case "0":
             break;

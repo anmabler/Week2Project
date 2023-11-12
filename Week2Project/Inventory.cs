@@ -44,7 +44,6 @@ namespace Week2Project
             Console.Write("Search for product name: ");
             string searchInput = Console.ReadLine();
 
-            //var result = products.Where(product => product.Name.Contains(searchInput)).ToList();
             // search for lower case name in list
             var result = products.Where(product => product.Name.ToLower().Contains(searchInput.ToLower())).ToList();
 
