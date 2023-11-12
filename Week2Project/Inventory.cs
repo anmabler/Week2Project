@@ -10,7 +10,7 @@ namespace Week2Project
     {
         public List<Product> products = new List<Product>();
 
-        // Function for showing items in list
+        // Method for showing items in list
         public void displayList()
         {
             Console.WriteLine("\nYour product list: ");
