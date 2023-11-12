@@ -62,20 +62,32 @@ static List<Product> addProducts (Inventory products)
             break;
         }
 
-        Console.Write("Enter Price: ");
-        string priceInput = Console.ReadLine();
-        if (priceInput.ToLower().Trim() == "q")
+        bool isInt = false;
+        string priceInput;
+        int value;
+        do
         {
-            products.displayList();
-            switchMenu(products);
-            break;
-        }
-        // check if int
-        bool isInt = int.TryParse(priceInput, out int value);   
+            Console.Write("Enter Price: ");
+            priceInput = Console.ReadLine();
+            if (priceInput.ToLower().Trim() == "q")
+            {
+                products.displayList();
+                switchMenu(products);
+                break;
+            }
+            // check if int
+            isInt = int.TryParse(priceInput, out value);
+            if (!isInt)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Incorrect price format. Please enter only numbers.");
+                Console.ResetColor();
+            }
+        } while (!isInt);
         // add product to list if int
         if (isInt)
         {
-            Product product = new Product(categoryInput, productInput, value);
+            Product product = new Product(categoryInput, productInput, Int32.Parse(priceInput));
             products.products.Add(product);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("The product was added.");
