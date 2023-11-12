@@ -23,7 +23,7 @@ static void switchMenu (Inventory products)
             break;
         case "2":
             // shows main menu again after displaying list
-            displayList(products);
+            products.displayList();
             switchMenu(products);
             break;
         //case "3":
@@ -37,6 +37,7 @@ static void switchMenu (Inventory products)
             break;
     }
 }
+// TODO: Move to Inventory class
 static List<Product> addProducts (Inventory products)
 {
     Console.WriteLine("Enter a new product. Enter 'q' to quit");
@@ -46,7 +47,7 @@ static List<Product> addProducts (Inventory products)
         string categoryInput = Console.ReadLine();
         if (categoryInput.ToLower().Trim() == "q")
         {
-            displayList(products);
+            products.displayList();
             switchMenu(products);
             break;
         }
@@ -55,7 +56,7 @@ static List<Product> addProducts (Inventory products)
         string productInput = Console.ReadLine();
         if (productInput.ToLower().Trim() == "q")
         {
-            displayList(products);
+            products.displayList();
             switchMenu(products);
             break;
         }
@@ -64,7 +65,7 @@ static List<Product> addProducts (Inventory products)
         string priceInput = Console.ReadLine();
         if (priceInput.ToLower().Trim() == "q")
         {
-            displayList(products);
+            products.displayList();
             switchMenu(products);
             break;
         }
@@ -82,22 +83,4 @@ static List<Product> addProducts (Inventory products)
 
     }
     return products.products;
-}
-// Function for showing items in list
-static void displayList(Inventory products)
-{
-    Console.WriteLine("\nYour product list: ");
-    Console.WriteLine("Category".PadRight(15) + "Name".PadRight(15) + "Price");
-    // Ascending order
-    var sortedProductList = products.products.OrderBy(product => product.Price).ToList();
-    foreach (Product product in sortedProductList)
-    {
-        Console.WriteLine(product.Category.PadRight(15) + product.Name.PadRight(15) + product.Price);
-    }
-    Console.WriteLine("-----------------------------------");
-    // Calculate sum
-    int priceSum = products.products.Sum(product => product.Price);
-
-    Console.WriteLine("\nSum ".PadRight(30) + priceSum);
-
 }
