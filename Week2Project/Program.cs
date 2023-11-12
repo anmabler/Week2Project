@@ -1,6 +1,5 @@
 ﻿using Week2Project;
 
-//List<Product> products = new List<Product>();
 Inventory products = new Inventory();
 // Show main menu
 switchMenu(products);
@@ -34,6 +33,7 @@ static void switchMenu (Inventory products)
             break;
         default:
             Console.WriteLine("Incorrect selection");
+            switchMenu(products);
             break;
     }
 }
