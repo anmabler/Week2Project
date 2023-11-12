@@ -26,9 +26,9 @@ static void switchMenu (Inventory products)
             products.displayList();
             switchMenu(products);
             break;
-        //case "3":
-        //    searchProduct();
-        //    break;
+        case "3":
+            products.searchProduct();
+            break;
         case "0":
             break;
         default:
