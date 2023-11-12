@@ -1,10 +1,11 @@
 ﻿using Week2Project;
 
-List<Product> products = new List<Product>();
+//List<Product> products = new List<Product>();
+Inventory products = new Inventory();
 // Show main menu
 switchMenu(products);
 
-static void switchMenu (List<Product> products)
+static void switchMenu (Inventory products)
 {
     Console.WriteLine("------------------------------------");
     Console.WriteLine("Enter a number to make a selection");
@@ -36,7 +37,7 @@ static void switchMenu (List<Product> products)
             break;
     }
 }
-static List<Product> addProducts (List<Product> products)
+static List<Product> addProducts (Inventory products)
 {
     Console.WriteLine("Enter a new product. Enter 'q' to quit");
     while (true)
@@ -73,29 +74,29 @@ static List<Product> addProducts (List<Product> products)
         if (isInt)
         {
             Product product = new Product(categoryInput, productInput, value);
-            products.Add(product);
+            products.products.Add(product);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("The product was added.");
             Console.ResetColor();
         }
 
     }
-    return products;
+    return products.products;
 }
 // Function for showing items in list
-static void displayList(List<Product> products)
+static void displayList(Inventory products)
 {
     Console.WriteLine("\nYour product list: ");
     Console.WriteLine("Category".PadRight(15) + "Name".PadRight(15) + "Price");
     // Ascending order
-    var sortedProductList = products.OrderBy(product => product.Price).ToList();
+    var sortedProductList = products.products.OrderBy(product => product.Price).ToList();
     foreach (Product product in sortedProductList)
     {
         Console.WriteLine(product.Category.PadRight(15) + product.Name.PadRight(15) + product.Price);
     }
     Console.WriteLine("-----------------------------------");
     // Calculate sum
-    int priceSum = products.Sum(product => product.Price);
+    int priceSum = products.products.Sum(product => product.Price);
 
     Console.WriteLine("\nSum ".PadRight(30) + priceSum);
 
